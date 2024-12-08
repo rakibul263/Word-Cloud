@@ -12,13 +12,22 @@ wc = WordCloud(
     stopwords=STOPWORDS,
     mask=python_mask,
     background_color="black",  
+    scale=1,
+    prefer_horizontal=0.5,
+    colormap="rainbow",
     contour_width=0,
     min_font_size=1,
-    max_words=100000
+    max_font_size=250,
+    max_words=100000,
+    mode="RGBA" 
 ).generate(text)
 
+manager = plt.get_current_fig_manager()
+manager.full_screen_toggle()
 
-plt.figure(figsize=(10, 10)) 
+# plt.figure(figsize=(10, 10)) 
+fig = plt.gcf()
+fig.patch.set_facecolor("black")
 plt.imshow(wc, interpolation="bilinear")
 plt.axis("off") 
 plt.tight_layout(pad=0)  
